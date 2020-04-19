@@ -15,8 +15,8 @@ function App() {
     axios.get('https://opentdb.com/api.php?amount=10')
       .then(data => {
         setFlashcards(data.data.results.map((d, index) => {
-          const answer = d.correct_answer;
-          const options = [...d.incorrect_answers.map(a => { return he.decode(a) }), he.decode(answer)];
+          const answer = he.decode(d.correct_answer);
+          const options = [...d.incorrect_answers.map(a => { return he.decode(a) }), answer];
           return {
             id: `${index}-${Date.now()}`,
             question: he.decode(d.question),
